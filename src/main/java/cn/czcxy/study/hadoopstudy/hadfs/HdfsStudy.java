@@ -18,6 +18,19 @@ public class HdfsStudy {
     public static void main(String[] args) throws IOException {
         readHdfsFile("/input/core-site.xml");
         copyToLocalFile("/input/core-site.xml", "C://core-site.xml");
+        copyFromLocalFile("C://ADJUSTORDER.txt", "/input");
+    }
+
+    /**
+     * 上传本地文件到hdfs
+     *
+     * @param src
+     * @param dst
+     * @throws IOException
+     */
+    private static void copyFromLocalFile(String src, String dst) throws IOException {
+        FileSystem fileSystem = getFileSystem();
+        fileSystem.copyFromLocalFile(new Path(src), new Path(dst));
     }
 
     /**
@@ -50,7 +63,7 @@ public class HdfsStudy {
      * @throws IOException
      */
     private static FileSystem getFileSystem() throws IOException {
-        System.setProperty("HADOOP_USER_NAME","hadoop");
+        System.setProperty("HADOOP_USER_NAME", "hadoop");
         FileSystem fileSystem = FileSystem.get(getConfiguration());
         return fileSystem;
     }
