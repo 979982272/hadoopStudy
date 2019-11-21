@@ -73,7 +73,7 @@ public class HdfsStudy {
      *
      * @return
      */
-    private static Configuration getConfiguration() {
+    public static Configuration getConfiguration() {
         Configuration configuration = new Configuration();
         configuration.set("fs.defaultFS", "hdfs://47.93.187.183:9000");
         configuration.set("hadoop.home.dir", "/usr/local/hadoop-3.1.2");
