@@ -17,8 +17,8 @@ public class HdfsStudy {
 
     public static void main(String[] args) throws IOException {
         readHdfsFile("/input/core-site.xml");
-        copyToLocalFile("/input/core-site.xml", "C://core-site.xml");
-        copyFromLocalFile("C://ADJUSTORDER.txt", "/input");
+       // copyToLocalFile("/input/core-site.xml", "C://core-site.xml");
+       // copyFromLocalFile("C://ADJUSTORDER.txt", "/input");
     }
 
     /**
