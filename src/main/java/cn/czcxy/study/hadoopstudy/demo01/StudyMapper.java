@@ -13,7 +13,10 @@ public class StudyMapper extends org.apache.hadoop.mapreduce.Mapper<LongWritable
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String lineVal = value.toString();
         for (String val : lineVal.split(" ")) {
-            context.write(new Text(val), new IntWritable(1));
+            if (val.indexOf("Exception:") > 0) {
+                context.write(new Text(val), new IntWritable(1));
+            }
+
         }
     }
 }
