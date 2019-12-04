@@ -14,7 +14,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import java.io.IOException;
 
 /**
- * 启动方法
+ * 切分统计单词数量
  * ./hadoop jar /usr/local/hadoop-study-0.0.1-SNAPSHOT.jar cn.czcxy.study.hadoopstudy.hadoop.SplitStudy /input/* /testout1
  */
 public class SplitStudy {
@@ -47,7 +47,7 @@ public class SplitStudy {
     /**
      * 内联mapper
      */
-    class InnerMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
+    static class InnerMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
         @Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String lineVal = value.toString();
@@ -62,7 +62,7 @@ public class SplitStudy {
     /**
      * 内联reducer
      */
-    class InnerReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
+    static class InnerReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
         @Override
         protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
             IntWritable count = new IntWritable(0);

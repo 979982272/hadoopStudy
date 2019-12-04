@@ -17,8 +17,8 @@ public class HdfsStudy {
 
     public static void main(String[] args) throws IOException {
         readHdfsFile("/input/core-site.xml");
-       // copyToLocalFile("/input/core-site.xml", "C://core-site.xml");
-       // copyFromLocalFile("C://ADJUSTORDER.txt", "/input");
+        // copyToLocalFile("/input/core-site.xml", "C://core-site.xml");
+        // copyFromLocalFile("C://ADJUSTORDER.txt", "/input");
     }
 
     /**
@@ -51,9 +51,20 @@ public class HdfsStudy {
      * @param path
      */
     private static void readHdfsFile(String path) throws IOException {
-        FileSystem fileSystem = getFileSystem();
-        FSDataInputStream fsDataInputStream = fileSystem.open(new Path(path));
+        FSDataInputStream fsDataInputStream = getFSDataInputStream(path);
         IOUtils.copyBytes(fsDataInputStream, System.out, 4096, true);
+    }
+
+    /**
+     * 获取hdfs的文件流
+     *
+     * @param path
+     * @return
+     * @throws IOException
+     */
+    public static FSDataInputStream getFSDataInputStream(String path) throws IOException {
+        FileSystem fileSystem = getFileSystem();
+        return fileSystem.open(new Path(path));
     }
 
     /**

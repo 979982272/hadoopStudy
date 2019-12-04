@@ -47,7 +47,7 @@ public class TemplateStudy {
     /**
      * 内联mapper
      */
-    class InnerMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
+    static class InnerMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
         @Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 
@@ -57,7 +57,7 @@ public class TemplateStudy {
     /**
      * 内联reducer
      */
-    class InnerReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
+    static class InnerReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
         @Override
         protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
 
