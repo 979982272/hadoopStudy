@@ -18,11 +18,11 @@ import java.io.IOException;
  * @description 模板文件
  * @date 2019/12/2 0002
  **/
-public class TemplateStudy {
+public class TemplateStudy extends BaseStudy{
     public static void main(String[] args) throws Exception {
         Configuration configuration = new Configuration();
         Job job = Job.getInstance(configuration);
-        job.setJarByClass(SplitStudy.class);
+        job.setJarByClass(getCurrentClass());
         /**
          * 设置mapper 输入的信息
          */

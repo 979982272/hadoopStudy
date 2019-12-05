@@ -17,11 +17,11 @@ import java.io.IOException;
  * 切分统计单词数量
  * ./hadoop jar /usr/local/hadoop-study-0.0.1-SNAPSHOT.jar cn.czcxy.study.hadoopstudy.hadoop.SplitStudy /input/* /testout1
  */
-public class SplitStudy {
+public class SplitStudy extends BaseStudy{
     public static void main(String[] args) throws Exception {
         Configuration configuration = new Configuration();
         Job job = Job.getInstance(configuration);
-        job.setJarByClass(SplitStudy.class);
+        job.setJarByClass(getCurrentClass());
         /**
          * 设置mapper 输入的信息
          */

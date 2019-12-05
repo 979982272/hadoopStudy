@@ -20,7 +20,7 @@ import java.io.IOException;
  * @启动方法 ./hadoop jar /usr/local/hadoop-study-0.0.1-SNAPSHOT.jar cn.czcxy.study.hadoopstudy.hadoop.PartitionerStudy /input/partitioner.txt /testout4
  * @date 2019/12/2 0002
  **/
-public class PartitionerStudy {
+public class PartitionerStudy extends BaseStudy{
     public static void main(String[] args) throws Exception {
         /**
          * 输入文件信息
@@ -30,7 +30,7 @@ public class PartitionerStudy {
          */
         Configuration configuration = new Configuration();
         Job job = Job.getInstance(configuration);
-        job.setJarByClass(SplitStudy.class);
+        job.setJarByClass(getCurrentClass());
 
         /**
          * 设置mapper 输入的信息

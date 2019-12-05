@@ -22,7 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @description mapper 阶段join查询
  * @date 2019/12/2 0002
  **/
-public class MappedJoinStudy {
+public class MappedJoinStudy extends BaseStudy{
     /**
      * 主运行方法,输入文件内容
      * sex
@@ -52,7 +52,7 @@ public class MappedJoinStudy {
     public static void main(String[] args) throws Exception {
         Configuration configuration = new Configuration();
         Job job = Job.getInstance(configuration);
-        job.setJarByClass(SplitStudy.class);
+        job.setJarByClass(getCurrentClass());
         /**
          * 设置mapper 输入的信息
          */
