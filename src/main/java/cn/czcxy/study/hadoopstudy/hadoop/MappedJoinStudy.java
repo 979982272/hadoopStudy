@@ -70,7 +70,6 @@ public class MappedJoinStudy extends BaseStudy{
         job.addCacheFile(new URI(args[2]));
         job.addCacheFile(new URI(args[3]));
         job.waitForCompletion(true);
-
     }
 
     /**

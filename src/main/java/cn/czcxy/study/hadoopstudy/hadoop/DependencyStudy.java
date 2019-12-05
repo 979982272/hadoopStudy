@@ -104,7 +104,8 @@ public class DependencyStudy extends BaseStudy {
         Thread thread = new Thread(jobControl);
         thread.start();
         while (!jobControl.allFinished()) {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
+            System.out.println("线程后台运行中，请稍后...");
         }
         jobControl.stop();
         System.out.println("运行完成");
