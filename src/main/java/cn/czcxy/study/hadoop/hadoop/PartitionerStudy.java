@@ -1,4 +1,4 @@
-package cn.czcxy.study.hadoopstudy.hadoop;
+package cn.czcxy.study.hadoop.hadoop;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -17,7 +17,7 @@ import java.io.IOException;
 /**
  * @author weihua
  * @description 结果输出多个文件
- * @启动方法 ./hadoop jar /usr/local/hadoop-study-0.0.1-SNAPSHOT.jar cn.czcxy.study.hadoopstudy.hadoop.PartitionerStudy /input/partitioner.txt /testout4
+ * @启动方法 ./hadoop jar /usr/local/hadoop-study-0.0.1-SNAPSHOT.jar cn.czcxy.study.hadoop.hadoop.PartitionerStudy /input/partitioner.txt /testout4
  * @date 2019/12/2 0002
  **/
 public class PartitionerStudy extends BaseStudy{

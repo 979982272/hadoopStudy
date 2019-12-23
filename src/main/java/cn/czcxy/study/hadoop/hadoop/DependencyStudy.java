@@ -1,6 +1,6 @@
-package cn.czcxy.study.hadoopstudy.hadoop;
+package cn.czcxy.study.hadoop.hadoop;
 
-import cn.czcxy.study.hadoopstudy.hadfs.HdfsStudy;
+import cn.czcxy.study.hadoop.hadfs.HdfsStudy;
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -31,7 +31,7 @@ import java.util.concurrent.ConcurrentHashMap;
  **/
 public class DependencyStudy extends BaseStudy {
     /**
-     * 启动:./hadoop jar /usr/local/hadoop-study-0.0.1-SNAPSHOT.jar cn.czcxy.study.hadoopstudy.hadoop.DependencyStudy /input/info /output/03 /output/04 /input/filter
+     * 启动:./hadoop jar /usr/local/hadoop-study-0.0.1-SNAPSHOT.jar cn.czcxy.study.hadoop.hadoop.DependencyStudy /input/info /output/03 /output/04 /input/filter
      * 文件info:
      * A quick grep among the startup scripts reveals that this is
      * part of the hplip service, which provides "HP Linux Imaging and Printi

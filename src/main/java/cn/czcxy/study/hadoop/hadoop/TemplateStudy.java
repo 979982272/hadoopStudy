@@ -1,4 +1,4 @@
-package cn.czcxy.study.hadoopstudy.hadoop;
+package cn.czcxy.study.hadoop.hadoop;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;

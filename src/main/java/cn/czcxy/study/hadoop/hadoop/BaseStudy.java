@@ -1,4 +1,4 @@
-package cn.czcxy.study.hadoopstudy.hadoop;
+package cn.czcxy.study.hadoop.hadoop;
 
 /**
  * @author weihua

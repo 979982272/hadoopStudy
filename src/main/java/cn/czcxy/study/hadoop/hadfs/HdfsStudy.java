@@ -1,4 +1,4 @@
-package cn.czcxy.study.hadoopstudy.hadfs;
+package cn.czcxy.study.hadoop.hadfs;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;

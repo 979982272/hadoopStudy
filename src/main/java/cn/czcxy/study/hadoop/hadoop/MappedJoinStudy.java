@@ -1,6 +1,6 @@
-package cn.czcxy.study.hadoopstudy.hadoop;
+package cn.czcxy.study.hadoop.hadoop;
 
-import cn.czcxy.study.hadoopstudy.hadfs.HdfsStudy;
+import cn.czcxy.study.hadoop.hadfs.HdfsStudy;
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -44,7 +44,7 @@ public class MappedJoinStudy extends BaseStudy{
      * 4	5	2	10.00
      * 5	4	1	10.01
      * <p>
-     * 启动命令: ./hadoop jar /usr/local/hadoop-study-0.0.1-SNAPSHOT.jar cn.czcxy.study.hadoopstudy.hadoop.MappedJoinStudy /input/loginglog /output/01 /input/sex.txt /input/userinfo.txt
+     * 启动命令: ./hadoop jar /usr/local/hadoop-study-0.0.1-SNAPSHOT.jar cn.czcxy.study.hadoop.hadoop.MappedJoinStudy /input/loginglog /output/01 /input/sex.txt /input/userinfo.txt
      *
      * @param args
      * @throws Exception

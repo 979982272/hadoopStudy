@@ -1,4 +1,4 @@
-package cn.czcxy.study.hadoopstudy.hadoop;
+package cn.czcxy.study.hadoop.hadoop;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -15,7 +15,7 @@ import java.io.IOException;
 
 /**
  * 切分统计单词数量
- * ./hadoop jar /usr/local/hadoop-study-0.0.1-SNAPSHOT.jar cn.czcxy.study.hadoopstudy.hadoop.SplitStudy /input/* /testout1
+ * ./hadoop jar /usr/local/hadoop-study-0.0.1-SNAPSHOT.jar cn.czcxy.study.hadoop.hadoop.SplitStudy /input/* /testout1
  */
 public class SplitStudy extends BaseStudy{
     public static void main(String[] args) throws Exception {

@@ -1,6 +1,5 @@
-package cn.czcxy.study.hadoopstudy.hadoop;
+package cn.czcxy.study.hadoop.hadoop;
 
-import com.sun.tools.classfile.Dependency;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.*;
@@ -34,7 +33,7 @@ public class SortStudy extends BaseStudy{
      * 1	56
      * 4	8
      * 9	7
-     * 启动命令: ./hadoop jar /usr/local/hadoop-study-0.0.1-SNAPSHOT.jar cn.czcxy.study.hadoopstudy.hadoop.SortStudy /input/sort /output/01
+     * 启动命令: ./hadoop jar /usr/local/hadoop-study-0.0.1-SNAPSHOT.jar cn.czcxy.study.hadoop.hadoop.SortStudy /input/sort /output/01
      *
      * @param args
      * @throws Exception

@@ -1,4 +1,4 @@
-package cn.czcxy.study.hadoopstudy.rpc;
+package cn.czcxy.study.hadoop.rpc;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.ipc.RPC;
