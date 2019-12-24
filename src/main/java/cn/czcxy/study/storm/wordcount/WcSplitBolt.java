@@ -1,5 +1,6 @@
 package cn.czcxy.study.storm.wordcount;
 
+import cn.czcxy.study.storm.sum.Test;
 import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.OutputFieldsDeclarer;
@@ -25,7 +26,7 @@ public class WcSplitBolt extends BaseRichBolt {
     @Override
     public void execute(Tuple tuple) {
         String line = tuple.getStringByField("line");
-        System.err.println(line);
+        Test.logger.error(line);
         for (String word : line.split(" ")) {
             outputCollector.emit(new Values(word));
         }

@@ -29,7 +29,7 @@ public class SumSpout extends BaseRichSpout {
     @Override
     public void nextTuple() {
         i++;
-        System.out.println("写入:" + i);
+        Test.logger.info("写入:" + i);
         Values tuple = new Values(i);
         this.spoutOutputCollector.emit(tuple);
         try {

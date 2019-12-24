@@ -1,5 +1,6 @@
 package cn.czcxy.study.storm.wordcount;
 
+import cn.czcxy.study.storm.sum.Test;
 import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.OutputFieldsDeclarer;
@@ -28,7 +29,8 @@ public class WcBolt extends BaseRichBolt {
             count += map.get(word);
         }
         map.put(word, count);
-        System.out.println(word + "=" + count);
+        Test.logger.info(word + "=" + count);
+
     }
 
     @Override

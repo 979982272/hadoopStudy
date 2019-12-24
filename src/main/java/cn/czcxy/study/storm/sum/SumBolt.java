@@ -1,5 +1,6 @@
 package cn.czcxy.study.storm.sum;
 
+import cn.czcxy.study.LogTestUtil;
 import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.OutputFieldsDeclarer;
@@ -19,7 +20,8 @@ public class SumBolt extends BaseRichBolt {
     @Override
     public void execute(Tuple tuple) {
         count = count + tuple.getIntegerByField("countField");
-        System.out.println("相加:" + count);
+        Test.logger.info("相加:" + count);
+        LogTestUtil.write("/test.log","相加:" + count);
     }
 
     @Override
