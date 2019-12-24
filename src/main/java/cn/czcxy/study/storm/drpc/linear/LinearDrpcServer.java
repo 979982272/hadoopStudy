@@ -13,6 +13,7 @@ import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
 
 /**
+ * 线性drpc
  * @author weihua
  * @description
  * @date 2019/12/24 0024
@@ -23,6 +24,7 @@ public class LinearDrpcServer {
         public void execute(Tuple tuple, BasicOutputCollector basicOutputCollector) {
             String input = tuple.getString(1);
             // 参数格式为固定格式
+            // 第一个参数为return-info信息
             basicOutputCollector.emit(new Values(tuple.getValue(0), input + "!"));
         }
 
