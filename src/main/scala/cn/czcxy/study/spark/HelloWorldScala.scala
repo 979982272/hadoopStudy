@@ -1,9 +1,9 @@
-package cn.czcxy.study.spark
+package cn.czcxy.study.MethodScala
+
+import cn.czcxy.study.spark.MethodScala
 
 object HelloWorldScala {
   def main(args: Array[String]): Unit = {
-    var s: String = "hello world"
-    print(s)
     println("hello world scala")
   }
 }
