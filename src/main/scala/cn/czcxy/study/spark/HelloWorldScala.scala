@@ -1,4 +1,4 @@
-package cn.czcxy.study.MethodScala
+package cn.czcxy.study.spark
 
 import cn.czcxy.study.spark.MethodScala
 

@@ -1,4 +1,4 @@
-package cn.czcxy.study.MethodScala
+package cn.czcxy.study.spark
 
 object VariableScala {
   /**
