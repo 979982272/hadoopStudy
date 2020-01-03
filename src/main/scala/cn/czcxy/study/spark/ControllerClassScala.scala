@@ -5,8 +5,4 @@ class ControllerClassScala {
     return met(10, 5)
   }
 }
-object ControllerClassScala{
-  def main(args: Array[String]): Unit = {
 
-  }
-}
