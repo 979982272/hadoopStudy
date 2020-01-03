@@ -65,7 +65,34 @@ object StudyScala {
     println(count.par.reduce(_ + _))
     // 折叠，有初始值 无特定顺序 初始值为0
     println(count.fold(0)(_ + _))
+
+    // 聚合相加;flatten 把多个list合并为一个
+    val lists = List(List(1, 2, 3), List(4, 5, 6), List(7, 8))
+    println(lists.flatten.reduce(_ + _))
+    // 直接聚合，指定初始化值为0；(_ + _.sum)代表用0+第一个list.sum;(_ + _)代表第一个list的结果和第二个的结果相加
+    println(lists.aggregate(0)(_ + _.sum, _ + _))
+    // 传入函数的写法不同;_ 的顺序代表对应的参数
+    lists.aggregate(0)((a: Int, b: List[Int]) => a + b.sum, tes02)
+
+    // 并集，交集，差集
+    val list01 = List(1, 2, 3, 4, 5)
+    val list02 = List(4, 5, 6, 7, 8)
+    // 并集
+    println(list01 union list02)
+    // 交集
+    println(list01 intersect list02)
+    // 差集
+    println(list01 diff list02)
   }
+
+  var tes01 = (a: Int, b: List[Int]) => {
+    a + b.sum
+  }
+
+  var tes02 = (a: Int, b: Int) => {
+    a + b
+  }
+
 
   /**
     *
