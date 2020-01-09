@@ -7,13 +7,13 @@ package cn.czcxy.study.spark.oo
   * @param name
   * @param age
   */
-class StructScala(val id: Int, val name: String, age: Int) {
+class StructStudy(val id: Int, val name: String, age: Int) {
   val newAge: Int = age
 }
 
-object StructScala {
+object StructStudy {
   def main(args: Array[String]): Unit = {
-    val s = new StructScala(1, "test", 26)
+    val s = new StructStudy(1, "test", 26)
     println(s.id)
     println(s.name)
     println(s.newAge)
