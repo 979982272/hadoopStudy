@@ -1,4 +1,4 @@
-package cn.czcxy.study.spark
+package cn.czcxy.study.spark.basic
 
 object ListScala {
   def main(args: Array[String]): Unit = {

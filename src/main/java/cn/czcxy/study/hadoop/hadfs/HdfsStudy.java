@@ -16,7 +16,7 @@ import java.io.IOException;
 public class HdfsStudy {
 
     public static void main(String[] args) throws IOException {
-        readHdfsFile("/input/core-site.xml");
+        readHdfsFile("/input/info");
         // copyToLocalFile("/input/core-site.xml", "C://core-site.xml");
         // copyFromLocalFile("C://ADJUSTORDER.txt", "/input");
     }

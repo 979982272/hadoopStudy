@@ -1,6 +1,4 @@
-package cn.czcxy.study.spark
-
-import cn.czcxy.study.spark.MethodScala
+package cn.czcxy.study.spark.basic
 
 object HelloWorldScala {
   def main(args: Array[String]): Unit = {

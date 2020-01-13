@@ -1,4 +1,4 @@
-package cn.czcxy.study.spark
+package cn.czcxy.study.spark.basic
 
 /**
   * def定义的为方法，val定义的为函数

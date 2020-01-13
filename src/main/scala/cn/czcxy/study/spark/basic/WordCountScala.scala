@@ -1,4 +1,4 @@
-package cn.czcxy.study.spark
+package cn.czcxy.study.spark.basic
 
 /**
   * 分词计数

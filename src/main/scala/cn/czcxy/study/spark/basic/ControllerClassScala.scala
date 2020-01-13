@@ -1,4 +1,4 @@
-package cn.czcxy.study.spark
+package cn.czcxy.study.spark.basic
 
 class ControllerClassScala {
   def controller(met: (Int, Int) => Int): Int = {
