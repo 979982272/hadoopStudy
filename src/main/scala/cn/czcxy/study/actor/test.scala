@@ -1,4 +1,4 @@
-package cn.czcxy.study.spark.actor
+package cn.czcxy.study.actor
 
 import akka.actor.typed.ActorSystem
 

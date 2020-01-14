@@ -1,4 +1,4 @@
-package cn.czcxy.study.spark.oo
+package cn.czcxy.study.oo
 
 import scala.io.Source
 import ContextPredefStudy._

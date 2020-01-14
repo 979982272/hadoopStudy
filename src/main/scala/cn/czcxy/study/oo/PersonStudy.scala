@@ -1,4 +1,4 @@
-package cn.czcxy.study.spark.oo
+package cn.czcxy.study.oo
 
 class PersonScala {
   // id 只读

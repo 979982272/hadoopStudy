@@ -1,4 +1,4 @@
-package cn.czcxy.study.spark.oo
+package cn.czcxy.study.oo
 
 /**
   * 构造器，不加修饰的变量外界无法访问；只能赋值给内部变量;默认使用val修饰

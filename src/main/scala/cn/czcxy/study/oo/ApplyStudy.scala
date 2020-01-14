@@ -1,4 +1,4 @@
-package cn.czcxy.study.spark.oo
+package cn.czcxy.study.oo
 
 class ApplyStudy(val name: String, val sex: Int, val age: Int) {
 

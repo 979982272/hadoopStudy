@@ -1,4 +1,4 @@
-package cn.czcxy.study.spark.basic
+package cn.czcxy.study.basic
 
 object MapScala {
   def main(args: Array[String]): Unit = {
