@@ -24,6 +24,7 @@ object SparkStudy {
 
     // 将rdd3 切分压平
     val rdd3: RDD[List[String]] = sc.parallelize(List(List("a b c", "a b b"), List("e f g", "f s d")))
+    // 调用flatten把多个list合并为一个list
     val flattenRes = rdd3.collect().flatten.flatMap(_.split(" "))
     println(flattenRes.toBuffer)
     sc.stop()
