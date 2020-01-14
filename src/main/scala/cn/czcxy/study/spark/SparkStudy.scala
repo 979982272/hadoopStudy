@@ -27,6 +27,18 @@ object SparkStudy {
     // 调用flatten把多个list合并为一个list
     val flattenRes = rdd3.collect().flatten.flatMap(_.split(" "))
     println(flattenRes.toBuffer)
+
+
+    val rdd4: RDD[Int] = sc.parallelize(List(1, 2, 3, 4, 5))
+    val rdd5: RDD[Int] = sc.parallelize(List(4, 5, 6, 7, 8))
+    // 求并集
+    var res: RDD[Int] = rdd4 union rdd5
+    println(res.collect().toBuffer)
+    // 去重
+    println(res.distinct().collect().toBuffer)
+    // 求交集
+    res = rdd4 intersection rdd5
+    println(res.collect().toBuffer)
     sc.stop()
   }
 }
