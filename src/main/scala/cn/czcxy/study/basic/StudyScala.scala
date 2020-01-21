@@ -59,7 +59,7 @@ object StudyScala {
     println(count.sum)
     // 并行计算求和
     println(count.par.sum)
-    // 按照特定顺序聚合
+    // 按照特定顺序聚合 代表(_ + _) 第一个的值加上第二个的
     println(count.reduce(_ + _))
     // 并行按照特定顺序聚合
     println(count.par.reduce(_ + _))
@@ -67,7 +67,7 @@ object StudyScala {
     println(count.fold(0)(_ + _))
 
     // 聚合相加;flatten 把多个list合并为一个
-     val lists: List[List[Int]] = List(List(1, 2, 3), List(4, 5, 6), List(7, 8))
+    val lists: List[List[Int]] = List(List(1, 2, 3), List(4, 5, 6), List(7, 8))
     println(lists.flatten.reduce(_ + _))
     // 直接聚合，指定初始化值为0；(_ + _.sum)代表用0+第一个list.sum;(_ + _)代表第一个list的结果和第二个的结果相加
     println(lists.aggregate(0)(_ + _.sum, _ + _))

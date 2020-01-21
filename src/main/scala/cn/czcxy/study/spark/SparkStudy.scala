@@ -39,6 +39,19 @@ object SparkStudy {
     // 求交集
     res = rdd4 intersection rdd5
     println(res.collect().toBuffer)
+
+    val rdd6: RDD[(String, Int)] = sc.parallelize(List(("test1", 1), ("test2", 2), ("test3", 3)))
+    val rdd7: RDD[(String, Int)] = sc.parallelize(List(("test4", 4), ("test5", 2), ("test3", 6)))
+    // 求join 查询出相同的
+    println((rdd6 join rdd7).collect().toBuffer)
+    // 左连接 查询出左边的
+    println((rdd6 leftOuterJoin rdd7).collect().toBuffer)
+    // 右连接 查询出右边的
+    println((rdd6 rightOuterJoin rdd7).collect().toBuffer)
+    // 先求并集而后按照key分组
+    println((rdd6 union rdd7).groupByKey().collect().toBuffer)
+    println((rdd6 union rdd7).groupByKey().mapValues(_.sum).collect().toBuffer)
+    println((rdd6 union rdd7).reduceByKey(_ + _).collect().toBuffer)
     sc.stop()
   }
 }
