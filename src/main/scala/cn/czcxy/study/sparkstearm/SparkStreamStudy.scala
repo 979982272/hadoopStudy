@@ -43,7 +43,7 @@ object SparkStreamStudy {
     val locationStrategy: LocationStrategy = LocationStrategies.PreferFixed(map)
     // 创建topic
     val topicPartitions = scala.collection.mutable.ArrayBuffer[TopicPartition]()
-    topicPartitions.+=(new TopicPartition("order-topic", 1))
+    topicPartitions.+=(new TopicPartition("order-topic", 0))
     val consumerStrategy: ConsumerStrategy[String, String] = ConsumerStrategies.Assign[String, String](topicPartitions, kafkaParms)
     //创建kakfa直向流
     val kafkaDStream: InputDStream[ConsumerRecord[String, String]] = KafkaUtils.createDirectStream[String, String](
@@ -59,11 +59,12 @@ object SparkStreamStudy {
     *
     */
   def processData(kafkaDStream: InputDStream[ConsumerRecord[String, String]]): Unit = {
-    kafkaDStream.transform((rdd, time) => {
+    kafkaDStream.transform((rdd) => {
+      // TODO 当从kafka中读取到消息的时候，会进入这个方法
       rdd
         .filter(msg => msg.value().split(",").length > 0)
         .mapPartitions(iter => {
-          // 针对每个分区数据操作： TODO：RDD中每个分区数据对应于Kafka Topic中每个分区的数据
+          // 针对每个分区数据操作：
           iter.map(item => {
             // print(item.value())
             val Array(province, count) = item.value().split(",")
@@ -71,35 +72,27 @@ object SparkStreamStudy {
             (province, new StringOps(count).toInt)
           })
         })
-    }).updateStateByKey((value: Seq[Int], state: Option[String]) => {
-      val province: String = state.getOrElse("0.0")
-      val count = value.sum
-      Some(province + count)
+    }).updateStateByKey((newState: Seq[Int], oldState: Option[Int]) => {
+      // TODO StreamingContext 中设置的Seconds秒数时间调用这个方法 会以province自动分组
+      // state 代表着上一次的结果 value 代表新的数据 如果有kafka消息 这个参数就有值
+      val oldCount: Int = oldState.getOrElse(0)
+      val newCount = oldCount + newState.sum
+      // 此次计算的最新结果
+      Some(newCount)
     }).foreachRDD((rdd, time) => {
       println("-------------------------------------------")
       println(s"Batch Time: ${new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSS").format(new Date(time.milliseconds))}")
       if (!rdd.isEmpty()) {
-        rdd.coalesce(1).foreachPartition(iter => iter.foreach(it=>{print("sss")}))
+        // 把每次的结果打印出来
+        rdd.coalesce(1).foreachPartition(iter => iter.foreach(it => println(it)))
       }
-      println("ddddd")
     })
-    /*val unit: DStream[(String, String)] = value.updateStateByKey((value: Seq[Int], state: Option[String]) => {
-      val province: String = state.getOrElse("0.0")
-      val count = value.sum
-      Some(province + count)
-    })
-    value.foreachRDD((rdd, time) => {
-      println("-------------------------------------------")
-      println(s"Batch Time: ${new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSS").format(new Date(time.milliseconds))}")
-      if (!rdd.isEmpty()) {
-        rdd.coalesce(1).foreachPartition(iter => iter.foreach(it=>{print("sss")}))
-      }
-      println("ddddd")
-    })*/
+
   }
 
   /**
     * 创建StreamingContext
+    * 出现莫名其妙的问题的时候删除hdfs中的检查点
     *
     * @return
     */
@@ -117,7 +110,7 @@ object SparkStreamStudy {
       val ssc = new StreamingContext(conf, Seconds(10))
       // 设置检查点信息
       ssc.checkpoint(CHECK_POING_PATH)
-      process(ssc)
+      //  process(ssc)
       ssc
     }, hadoopConf)
     cxt
@@ -130,13 +123,13 @@ object SparkStreamStudy {
     cxt.start()
     cxt.awaitTermination()
     cxt.stop(stopSparkContext = true, stopGracefully = true)
-    /*// TODO 3. 创建kafka链接
+    // TODO 3. 创建kafka链接
     val kafkaDStream: InputDStream[ConsumerRecord[String, String]] = createKafkaDStream(cxt)
     // TODO 4. 消费kafka消息
-    processData(kafkaDStream)*/
+    processData(kafkaDStream)
   }
 
-  def process(cxt: StreamingContext): Unit ={
+  def process(cxt: StreamingContext): Unit = {
     // TODO 3. 创建kafka链接
     val kafkaDStream: InputDStream[ConsumerRecord[String, String]] = createKafkaDStream(cxt)
     // TODO 4. 消费kafka消息
