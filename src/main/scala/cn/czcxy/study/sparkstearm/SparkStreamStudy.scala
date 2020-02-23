@@ -1,5 +1,8 @@
 package cn.czcxy.study.sparkstearm
 
+import java.text.SimpleDateFormat
+import java.util.Date
+
 import org.apache.hadoop.conf.Configuration
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.common.TopicPartition
@@ -10,6 +13,7 @@ import org.apache.spark.streaming.kafka010._
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 import org.apache.spark.streaming.dstream.{DStream, InputDStream}
 
+import scala.collection.immutable.StringOps
 
 /**
   * sparkstreaming 学习，消费kafka消息
@@ -55,23 +59,43 @@ object SparkStreamStudy {
     *
     */
   def processData(kafkaDStream: InputDStream[ConsumerRecord[String, String]]): Unit = {
-    val value: DStream[(String, String)] = kafkaDStream.transform((rdd, time) => {
+    kafkaDStream.transform((rdd, time) => {
       rdd
-        .filter(
-          msg =>
-            msg.value().split(",").length > 0)
+        .filter(msg => msg.value().split(",").length > 0)
         .mapPartitions(iter => {
           // 针对每个分区数据操作： TODO：RDD中每个分区数据对应于Kafka Topic中每个分区的数据
           iter.map(item => {
-           // print(item.value())
-            val Array(a, b) = item.value().split(",")
+            // print(item.value())
+            val Array(province, count) = item.value().split(",")
             // 返回二元组，按照省份ID进行统计订单销售额，所以省份ID为Key
-            (a, b)
+            (province, new StringOps(count).toInt)
           })
         })
+    }).updateStateByKey((value: Seq[Int], state: Option[String]) => {
+      val province: String = state.getOrElse("0.0")
+      val count = value.sum
+      Some(province + count)
+    }).foreachRDD((rdd, time) => {
+      println("-------------------------------------------")
+      println(s"Batch Time: ${new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSS").format(new Date(time.milliseconds))}")
+      if (!rdd.isEmpty()) {
+        rdd.coalesce(1).foreachPartition(iter => iter.foreach(it=>{print("sss")}))
+      }
+      println("ddddd")
     })
-    print("12312aaaaa---------------")
-    value.print()
+    /*val unit: DStream[(String, String)] = value.updateStateByKey((value: Seq[Int], state: Option[String]) => {
+      val province: String = state.getOrElse("0.0")
+      val count = value.sum
+      Some(province + count)
+    })
+    value.foreachRDD((rdd, time) => {
+      println("-------------------------------------------")
+      println(s"Batch Time: ${new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSS").format(new Date(time.milliseconds))}")
+      if (!rdd.isEmpty()) {
+        rdd.coalesce(1).foreachPartition(iter => iter.foreach(it=>{print("sss")}))
+      }
+      println("ddddd")
+    })*/
   }
 
   /**
@@ -91,12 +115,9 @@ object SparkStreamStudy {
         .setMaster("local[3]") // 启动三个线程Thread运行应用
         .setAppName("SparkStreamStudy")
       val ssc = new StreamingContext(conf, Seconds(10))
-      // 设置日志级别
-      ssc.sparkContext.setLogLevel("DEBUG")
       // 设置检查点信息
       ssc.checkpoint(CHECK_POING_PATH)
-      /*// 处理kafka信息
-      processData(ssc)*/
+      process(ssc)
       ssc
     }, hadoopConf)
     cxt
@@ -109,6 +130,13 @@ object SparkStreamStudy {
     cxt.start()
     cxt.awaitTermination()
     cxt.stop(stopSparkContext = true, stopGracefully = true)
+    /*// TODO 3. 创建kafka链接
+    val kafkaDStream: InputDStream[ConsumerRecord[String, String]] = createKafkaDStream(cxt)
+    // TODO 4. 消费kafka消息
+    processData(kafkaDStream)*/
+  }
+
+  def process(cxt: StreamingContext): Unit ={
     // TODO 3. 创建kafka链接
     val kafkaDStream: InputDStream[ConsumerRecord[String, String]] = createKafkaDStream(cxt)
     // TODO 4. 消费kafka消息

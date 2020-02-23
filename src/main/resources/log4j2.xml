@@ -24,7 +24,8 @@
     </Appenders>
     <Loggers>
         <Logger name="org.apache.zookeeper" level="WARN"/>
-        <Root level="ERROR">
+        <Logger name="cn.czcxy.study.sparkstearm" level="WARN"/>
+        <Root level="WARN">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
