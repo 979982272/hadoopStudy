@@ -25,7 +25,7 @@ object OrderJsonProducer {
   def main(args: Array[String]): Unit = {
     // TODO 注册JsonMapper
     val forCount: Int = RandomUtils.nextInt(10)
-    for (index <- 0 to forCount) {
+    for (index <- 0 to 6) {
       // TODO 生成销售订单数据
       val saleOrder: SaleOrder = {
         // 订单id 使用随机数生成
@@ -41,7 +41,7 @@ object OrderJsonProducer {
       // 将json转换为实体
       val order: SaleOrder = mapper.readValue(orderJson, classOf[SaleOrder])
       println(orderJson)
-      println(order)
+     // println(order)
       sendKafka(saleOrder)
     }
   }
