@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 import org.apache.commons.lang.math.RandomUtils
 import org.apache.kafka.clients.producer.{KafkaProducer, Producer, ProducerRecord}
-import org.apache.kafka.common.serialization.Serdes.StringSerde
 
 
 /**
@@ -41,7 +40,7 @@ object OrderJsonProducer {
       // 将json转换为实体
       val order: SaleOrder = mapper.readValue(orderJson, classOf[SaleOrder])
       println(orderJson)
-     // println(order)
+      // println(order)
       sendKafka(saleOrder)
     }
   }
@@ -52,10 +51,10 @@ object OrderJsonProducer {
     * @param saleOrder
     */
   def sendKafka(saleOrder: SaleOrder): Unit = {
-    val mapper: ObjectMapper = new ObjectMapper()
-    mapper.registerModule(DefaultScalaModule)
     val producerRecord: ProducerRecord[String, String] = new ProducerRecord[String, String](topic, saleOrder.orderId, mapper.writeValueAsString(saleOrder))
     kafkaProducer.send(producerRecord)
+    // 每次发送数据以后，稍微休息
+    Thread.sleep(RandomUtils.nextInt(10) * 100)
   }
 
   /**
