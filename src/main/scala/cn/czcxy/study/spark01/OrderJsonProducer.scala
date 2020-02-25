@@ -24,13 +24,13 @@ object OrderJsonProducer {
   def main(args: Array[String]): Unit = {
     // TODO 注册JsonMapper
     val forCount: Int = RandomUtils.nextInt(10)
-    for (index <- 0 to 6) {
+    for (index <- 0 to 3) {
       // TODO 生成销售订单数据
       val saleOrder: SaleOrder = {
         // 订单id 使用随机数生成
         val orderId: String = UUID.randomUUID().toString
         // 省份id
-        val provinceId: Int = RandomUtils.nextInt(34) + 1
+        val provinceId: Int = RandomUtils.nextInt(2) + 1
         // 订单价格
         val orderPrice: Float = RandomUtils.nextInt(34) + 0.5f
         SaleOrder(orderId, provinceId, orderPrice)

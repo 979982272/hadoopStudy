@@ -1,5 +1,7 @@
 package cn.czcxy.study;
 
+import cn.czcxy.study.utils.RedisUtil;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -26,6 +28,5 @@ public class LogTestUtil {
         }finally {
 
         }
-
     }
 }
