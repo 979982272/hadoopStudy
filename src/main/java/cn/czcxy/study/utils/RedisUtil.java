@@ -13,7 +13,8 @@ import java.net.URI;
  * @date 2020/2/25 0025
  **/
 public class RedisUtil {
-    private static JedisPool jedisPool;
+    //  volatile禁止指令重排序
+    private volatile static JedisPool jedisPool;
 
     static {
         jedisPool = new JedisPool(new GenericObjectPoolConfig(), "123.207.55.47", 6389, Protocol.DEFAULT_TIMEOUT, "tudou123");
