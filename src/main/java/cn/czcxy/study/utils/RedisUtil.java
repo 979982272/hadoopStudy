@@ -15,13 +15,21 @@ import java.net.URI;
 public class RedisUtil {
     private static JedisPool jedisPool;
 
+    static {
+        jedisPool = new JedisPool(new GenericObjectPoolConfig(), "123.207.55.47", 6389, Protocol.DEFAULT_TIMEOUT, "tudou123");
+    }
+
     private RedisUtil() {
     }
 
     public static JedisPool getInstance() {
-        if (null == jedisPool) {
-            jedisPool = new JedisPool(new GenericObjectPoolConfig(), "123.207.55.47", 6389, Protocol.DEFAULT_TIMEOUT, "tudou123");
-        }
+       /* if (jedisPool == null) {
+            synchronized (RedisUtil.class) {
+                if (jedisPool == null) {
+                    jedisPool = new JedisPool(new GenericObjectPoolConfig(), "123.207.55.47", 6389, Protocol.DEFAULT_TIMEOUT, "tudou123");
+                }
+            }
+        }*/
         return jedisPool;
     }
 }
