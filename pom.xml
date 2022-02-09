@@ -7,7 +7,7 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <hadoop.version>3.1.2</hadoop.version>
+        <hadoop.version>3.1.4</hadoop.version>
         <storm.version>1.2.3</storm.version>
         <scala.version>2.12.10</scala.version>
         <spark.version>2.4.4</spark.version>
